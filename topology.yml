@@ -1,0 +1,78 @@
+name: frr-lab
+
+mgmt:
+  network: clab-frr
+  ipv4-subnet: 172.21.21.0/24
+
+topology:
+  nodes:
+    r1:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - /opt/frr-lab/configs/r1/frr.conf:/etc/frr/frr.conf
+        - /opt/frr-lab/configs/r1/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 10.0.12.1/30 dev eth1
+        - ip addr add 10.0.31.2/30 dev eth2
+        - ip addr add 1.1.1.1/32   dev lo
+        - ip link add vxlan100 type vxlan id 100 local 1.1.1.1 dstport 4789 nolearning
+        - ip link set vxlan100 up
+        - ip link add br100 type bridge
+        - ip link set vxlan100 master br100
+        - ip link set eth3 master br100
+        - ip link set br100 up
+
+    r2:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - /opt/frr-lab/configs/r2/frr.conf:/etc/frr/frr.conf
+        - /opt/frr-lab/configs/r2/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 10.0.12.2/30 dev eth1
+        - ip addr add 10.0.23.1/30 dev eth2
+        - ip addr add 2.2.2.2/32   dev lo
+        - ip link add vxlan100 type vxlan id 100 local 2.2.2.2 dstport 4789 nolearning
+        - ip link set vxlan100 up
+        - ip link add br100 type bridge
+        - ip link set vxlan100 master br100
+        - ip link set eth3 master br100
+        - ip link set br100 up
+
+    r3:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - /opt/frr-lab/configs/r3/frr.conf:/etc/frr/frr.conf
+        - /opt/frr-lab/configs/r3/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 10.0.23.2/30 dev eth1
+        - ip addr add 10.0.31.1/30 dev eth2
+        - ip addr add 3.3.3.3/32   dev lo
+        - ip link add vxlan100 type vxlan id 100 local 3.3.3.3 dstport 4789 nolearning
+        - ip link set vxlan100 up
+        - ip link add br100 type bridge
+        - ip link set vxlan100 master br100
+        - ip link set br100 up
+
+    host1:
+      kind: linux
+      image: alpine:latest
+      exec:
+        - ip addr add 10.100.0.1/24 dev eth1
+        - ip link set eth1 up
+
+    host2:
+      kind: linux
+      image: alpine:latest
+      exec:
+        - ip addr add 10.100.0.2/24 dev eth1
+        - ip link set eth1 up
+
+  links:
+    - endpoints: ["r1:eth1", "r2:eth1"]
+    - endpoints: ["r2:eth2", "r3:eth1"]
+    - endpoints: ["r3:eth2", "r1:eth2"]
+    - endpoints: ["r1:eth3", "host1:eth1"]
+    - endpoints: ["r2:eth3", "host2:eth1"]
