@@ -1,6 +1,34 @@
 # FRR VXLAN / BGP EVPN Lab
 
-A 3-router ContainerLab topology running FRR with OSPF underlay, BGP EVPN control plane, and VXLAN data plane. Two Alpine hosts verify L2 extension across the overlay.
+A 3-router ContainerLab topology running FRR with an OSPF underlay, BGP EVPN control plane, and VXLAN data plane. Two Alpine hosts verify end-to-end L2 extension across the overlay.
+
+## Why VXLAN?
+
+Traditional VLANs are limited to a single physical Layer 2 domain — traffic cannot cross a routed boundary without losing its L2 identity. **VXLAN (Virtual Extensible LAN)** solves this by encapsulating Ethernet frames inside UDP packets (port 4789), tunnelling L2 segments across an IP/L3 underlay network.
+
+In this lab, `host1` and `host2` are connected to different routers (`R1` and `R2`) on physically separate network segments. VXLAN makes them appear to be on the **same LAN** (`10.100.0.0/24`), so they can ping each other directly without any routing between them — as if they were plugged into the same switch.
+
+## Why BGP EVPN?
+
+VXLAN alone needs a way to distribute information about which hosts (MACs/IPs) live behind which tunnel endpoint (VTEP). Without a control plane, every VTEP floods unknown traffic to all other VTEPs, which scales poorly.
+
+**BGP EVPN (Ethernet VPN, RFC 7432)** is the industry-standard control plane for VXLAN. It uses MP-BGP to advertise:
+
+| Route Type | What it carries | Purpose |
+|------------|----------------|---------|
+| **Type 2** (MAC/IP) | Host MAC + IP address | Tells remote VTEPs where a host lives — suppresses flooding |
+| **Type 3** (IMET) | VTEP IP per VNI | Builds the multicast/flood replication list at startup |
+
+In this lab, FRR's `bgpd` runs an **iBGP full mesh** (AS 65000) between all three routers. As soon as `host1` sends its first packet, `R1` learns its MAC, advertises a Type-2 route to `R2` and `R3` via BGP EVPN, and `R2` installs a specific FDB entry pointing directly to `R1`'s VTEP — **no more flooding needed**.
+
+## What the hosts get
+
+| Without VXLAN + EVPN | With VXLAN + EVPN |
+|----------------------|-------------------|
+| host1 and host2 are on isolated L3 subnets | host1 and host2 share a single L2 segment |
+| Communication requires routing (gateway hop) | Communication is direct L2 — no gateway needed |
+| MAC addresses are not visible across routers | MACs are distributed automatically via BGP EVPN |
+| Scaling requires manual static tunnels | New VTEPs auto-discover each other via BGP |
 
 ## Topology
 
