@@ -6,23 +6,23 @@ A 3-router ContainerLab topology running FRR with OSPF underlay, BGP EVPN contro
 
 ```mermaid
 graph TB
-    subgraph overlay["⬛  VXLAN Overlay — VNI 100  ·  L2 segment 10.100.0.0/24"]
-        H1["🖥 host1\n10.100.0.1"]
-        H2["🖥 host2\n10.100.0.2"]
+    subgraph overlay["VXLAN Overlay — VNI 100 · L2 segment 10.100.0.0/24"]
+        H1["host1<br/>10.100.0.1"]
+        H2["host2<br/>10.100.0.2"]
     end
 
     H1 -- eth1 --- R1
     H2 -- eth1 --- R2
 
-    subgraph underlay["🔁  Underlay — OSPF area 0  ·  BGP EVPN iBGP AS 65000"]
-        R1["🔀 R1\nVTEP 1.1.1.1\nbr100 = vxlan100 + eth3"]
-        R2["🔀 R2\nVTEP 2.2.2.2\nbr100 = vxlan100 + eth3"]
-        R3["🔀 R3\nVTEP 3.3.3.3\nbr100 = vxlan100"]
+    subgraph underlay["Underlay — OSPF area 0 · BGP EVPN iBGP AS 65000"]
+        R1["R1<br/>VTEP 1.1.1.1"]
+        R2["R2<br/>VTEP 2.2.2.2"]
+        R3["R3<br/>VTEP 3.3.3.3"]
     end
 
-    R1 -- "eth1 ↔ eth1\n10.0.12.0/30" --- R2
-    R2 -- "eth2 ↔ eth1\n10.0.23.0/30" --- R3
-    R3 -- "eth2 ↔ eth2\n10.0.31.0/30" --- R1
+    R1 -- "10.0.12.0/30" --- R2
+    R2 -- "10.0.23.0/30" --- R3
+    R3 -- "10.0.31.0/30" --- R1
 
     R1 -. "BGP EVPN / VXLAN" .- R2
     R1 -. "BGP EVPN / VXLAN" .- R3
