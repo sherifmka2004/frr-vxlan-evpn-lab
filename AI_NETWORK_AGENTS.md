@@ -4,21 +4,21 @@ Open-source projects for AI-powered network troubleshooting and automation, sort
 
 ## GitHub Projects (Ranked by Promise)
 
-| # | Project | Stars | Language | Stack | Description |
-|---|---------|-------|----------|-------|-------------|
-| 1 | [NetClaw](https://github.com/automateyournetwork/netclaw) | ~160 | Python | OpenClaw, pyATS, MCP | CCIE-level autonomous AI agent. 82 skills, 37 MCP servers. Live SSH to IOS-XE, NX-OS, JunOS, ASA. OSPF/BGP troubleshooting, ServiceNow/NetBox integration, Cisco CML/NSO/SD-WAN support |
-| 2 | [OpenClaw](https://github.com/openclaw/openclaw) | 259K | TypeScript | MCP, Multi-channel | General-purpose AI assistant framework that NetClaw is built on. Network skills via MCP servers. 20+ channels (Slack, Teams, Discord, etc.) |
-| 3 | [AI-Network-Troubleshooting-PoC](https://github.com/jillesca/AI-Network-Troubleshooting-PoC) | 33 | Python | OpenAI, LangChain, pyATS, Grafana | Grafana alert → LLM → pyATS remediation pipeline. Demonstrates ISIS routing failure detection, command execution, and telemetry-driven diagnosis |
-| 4 | [ReACT_AI_Agent_for_Cisco_IOS_XE](https://github.com/automateyournetwork/ReACT_AI_Agent_for_Cisco_IOS_XE) | 27 | Python | ReACT, pyATS, Cisco IOS XE | Cisco DevNet demo wiring alerts into ReACT-style agents that call pyATS/Netmiko to run CLI checks and fixes per intent. Includes Webex/Grafana integrations |
-| 5 | [Multi_Device_AI_Agent](https://github.com/automateyournetwork/multi_device_ai_agent) | 35 | Python | Cisco CML, Streamlit | Extends AI agents to full simulated topology, executing multi-device CLI work via pyATS and providing a Streamlit control plane |
-| 6 | [netbox_react_agent](https://github.com/automateyournetwork/netbox_react_agent) | 12 | Python | ReACT, NetBox, pyATS | Intent-driven NetBox troubleshooting that formulates CLI commands, queries inventory, and writes compliance fixes back to NetBox |
-| 7 | [bubbln_network-automation](https://github.com/asasupo/bubbln_network-automation) | 4 | Python | LangChain, Netmiko, Monitoring | LLM + automation scripts for live Cisco networking labs; showcases reasoning chains that convert alerts into CLI sequences |
-| 8 | [unlocking-ai-agents-network-engineering](https://github.com/flopach/unlocking-ai-agents-network-engineering) | 4 | Python/Jupyter | smolagents, Netmiko, Catalyst 8000V | Cisco learning lab with local LLMs (Llama 3.1, Qwen 2.5) issuing CLI calls. Emphasizes transparency, local telemetry ingestion, and tool validation |
-| 9 | [ai-agent-automation](https://github.com/lahcenkh/ai-agent-automation) | 6 | Python | Netmiko, LangChain, DeepSeek | LangChain orchestrates DeepSeek LLM to authenticate, run Netmiko SSH, and apply RFCs on IOS XR infrastructure |
-| 10 | [AI-TAC](https://github.com/metajar/ai-tac) | 3 | Go | GPT, CLI/TUI | Lightweight GPT-powered troubleshooting assistant with a CLI/TUI that can execute SSH commands for diagnostics |
-| 11 | [pyATS_AI_Agent](https://github.com/vibeopsforum/pyATS_AI_Agent) | - | Python | Cisco pyATS, LLM | Dynamically scripts and runs Cisco pyATS tests from natural language prompts |
-| 12 | [netmiko-ai](https://github.com/mesutozsoytraining/netmiko-ai) | 1 | Python | Netmiko, Claude 3.5 | Netmiko + Claude 3.5 Sonnet for network engineering CLI automation, useful as an Anthropic-driven proof-of-concept |
-| 13 | [gpt-neteng](https://github.com/jonhammer/gpt-neteng) | - | Python | GPT | "The AI Network Engineer" early/minimal CLI-focused implementation |
+| # | Project | Stars | Language | Stack | Last Updated | Description |
+|---|---------|-------|----------|-------|-------------|-------------|
+| 1 | [NetClaw](https://github.com/automateyournetwork/netclaw) | ~160 | Python | OpenClaw, pyATS, MCP | 2026-03-05 | CCIE-level autonomous AI agent. 82 skills, 37 MCP servers. Live SSH to IOS-XE, NX-OS, JunOS, ASA. OSPF/BGP troubleshooting, ServiceNow/NetBox integration, Cisco CML/NSO/SD-WAN support |
+| 2 | [OpenClaw](https://github.com/openclaw/openclaw) | 259K | TypeScript | MCP, Multi-channel | 2026-03-05 | General-purpose AI assistant framework that NetClaw is built on. Network skills via MCP servers. 20+ channels (Slack, Teams, Discord, etc.) |
+| 3 | [AI-Network-Troubleshooting-PoC](https://github.com/jillesca/AI-Network-Troubleshooting-PoC) | 33 | Python | OpenAI, LangChain, pyATS, Grafana | 2026-01-22 | Grafana alert → LLM → pyATS remediation pipeline. Demonstrates ISIS routing failure detection, command execution, and telemetry-driven diagnosis |
+| 4 | [ReACT_AI_Agent_for_Cisco_IOS_XE](https://github.com/automateyournetwork/ReACT_AI_Agent_for_Cisco_IOS_XE) | 27 | Python | ReACT, pyATS, Cisco IOS XE | 2026-02-16 | Cisco DevNet demo wiring alerts into ReACT-style agents that call pyATS/Netmiko to run CLI checks and fixes per intent. Includes Webex/Grafana integrations |
+| 5 | [Multi_Device_AI_Agent](https://github.com/automateyournetwork/multi_device_ai_agent) | 35 | Python | Cisco CML, Streamlit | 2025-12-19 | Extends AI agents to full simulated topology, executing multi-device CLI work via pyATS and providing a Streamlit control plane |
+| 6 | [netbox_react_agent](https://github.com/automateyournetwork/netbox_react_agent) | 12 | Python | ReACT, NetBox, pyATS | 2026-02-15 | Intent-driven NetBox troubleshooting that formulates CLI commands, queries inventory, and writes compliance fixes back to NetBox |
+| 7 | [bubbln_network-automation](https://github.com/olasupo/bubbln_network-automation) | 4 | Python | LangChain, Netmiko, Monitoring | 2026-02-18 | LLM + automation scripts for live Cisco networking labs; showcases reasoning chains that convert alerts into CLI sequences |
+| 8 | [unlocking-ai-agents-network-engineering](https://github.com/flopach/unlocking-ai-agents-network-engineering) | 4 | Python/Jupyter | smolagents, Netmiko, Catalyst 8000V | 2025-05-11 | Cisco learning lab with local LLMs (Llama 3.1, Qwen 2.5) issuing CLI calls. Emphasizes transparency, local telemetry ingestion, and tool validation |
+| 9 | [ai-agent-automation](https://github.com/lahcenkh/ai-agent-automation) | 6 | Python | Netmiko, LangChain, DeepSeek | 2025-02-11 | LangChain orchestrates DeepSeek LLM to authenticate, run Netmiko SSH, and apply RFCs on IOS XR infrastructure |
+| 10 | [AI-TAC](https://github.com/metajar/ai-tac) | 3 | Go | GPT, CLI/TUI | 2026-02-13 | Lightweight GPT-powered troubleshooting assistant with a CLI/TUI that can execute SSH commands for diagnostics |
+| 11 | [pyATS_AI_Agent](https://github.com/vibeopsforum/pyATS_AI_Agent) | - | Python | Cisco pyATS, LLM | 2026-01-13 | Dynamically scripts and runs Cisco pyATS tests from natural language prompts |
+| 12 | [netmiko-ai](https://github.com/mesutozsoytraining/netmiko-ai) | 1 | Python | Netmiko, Claude 3.5 | 2025-02-08 | Netmiko + Claude 3.5 Sonnet for network engineering CLI automation, useful as an Anthropic-driven proof-of-concept |
+| 13 | [gpt-neteng](https://github.com/jonhammer/gpt-neteng) | - | Python | GPT | 2026-01-27 | "The AI Network Engineer" early/minimal CLI-focused implementation |
 
 ## Architecture Patterns
 
